@@ -37,3 +37,9 @@ output "condor_cluster_id" {
   description = "Condor Cluster ID"
   value       = random_id.cluster.hex
 }
+
+output "admin_kubeconfig" {
+  description = "Condor cluster admin kubeconfig"
+  value       = data.external.admin_kubeconfig.result
+  sensitive   = true
+}

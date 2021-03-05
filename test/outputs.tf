@@ -37,3 +37,9 @@ output "condor_cluster_id" {
   description = "Condor Cluster ID"
   value       = module.condor.condor_cluster_id
 }
+
+output "admin_kubeconfig" {
+  description = "Condor kubeconfig"
+  value       = module.condor.admin_kubeconfig
+  sensitive   = true
+}

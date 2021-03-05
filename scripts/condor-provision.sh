@@ -13,6 +13,26 @@ CONTAINERD_RELEASE="${CONTAINERD_RELEASE}"
 K8_VERSION="${K8_VERSION}"
 FILES_TO_CLEAN="/tmp/condor-provision.sh"
 
+kill_service(){
+	service=$1
+	systemctl kill --kill=all $service
+
+	while
+}
+
+disable_unattended_upgrades(){
+  systemctl disable apt-daily.timer
+  systemctl disable apt-daily-upgrade.timer
+  systemctl kill --kill-who=all unattended-upgrades.service
+  systemctl kill --kill-who=all apt-daily.service
+  systemctl kill --kill-who=all apt-daily-upgrade.service
+}
+
+enable_unattended_upgrades(){
+  systemctl enable apt-daily.timer
+  systemctl enable apt-daily-upgrade.timer
+}
+
 system_config(){
 	cat <<-EOF > /etc/modules-load.d/containerd.conf
 		overlay

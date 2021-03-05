@@ -139,3 +139,9 @@ variable "kube_flannel_version" {
   type        = string
   default     = "0.13.0"
 }
+
+variable "write_admin_kubeconfig" {
+  description = "Write local admin.conf kubeconfig file."
+  type        = bool
+  default     = true
+}

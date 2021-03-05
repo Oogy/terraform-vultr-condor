@@ -218,3 +218,8 @@ resource "null_resource" "worker_join" {
     ]
   }
 }
+
+data "external" "admin_kubeconfig" {
+  depends_on = [null_resource.cluster_init]
+  program    = ["${path.module}/scripts/admin-kubeconfig.sh", vultr_instance.controllers[0].main_ip, vultr_instance.controllers[0].internal_ip]
+}
